@@ -1,0 +1,27 @@
+  APP_RESPONSE = "app-response",
+  ERROR = "error",
+  PURCHASE = "purchase",
+  SEARCH = "search",
+  FILTER_INTERACTION = "filter-interaction",
+  PRODUCT_INTERACTION = "product-interaction",
+  COMPONENT_EVENT = "general-component-event",
+  /**
+   * @deprecated old version of support for component interaction. will be deprecated in future versions
+   */
+  GENERAL_COMPONENT_INTERACTION = "general-component-interaction",
+  PAGE_PRODUCTS_DISPLAYED = "page-products-displayed", // Might need to come up with something better to prevent us having to write alof code...
+  PAGE_VIEW = "page-view",
+
+.... 
+
+A: 
+/Users/pmontgomery/2023lulu/mwa-libraries/packages/mwa-analytics-config/modules/transformationConfigs/src
+
+ tranformationConfigs.ts
+ 
+B: 
+/Users/pmontgomery/2023lulu/mwa-libraries/packages/mwa-analytics-shared/src/LAMType
+
+C: 
+
+

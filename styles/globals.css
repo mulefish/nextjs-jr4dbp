@@ -1,0 +1,23 @@
+.sendThis {
+  box-sizing: border-box;
+  width: 30%;
+  min-height: 400px;
+
+  /* float: left; */
+  margin: 0;
+  padding: 1em;
+}
+/* #gotThis {
+  box-sizing: border-box;
+  width: 70%;
+  min-height: 800px;
+
+  margin: 0;
+  padding: 1em;
+}*/
+
+.nudge {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: solid;
+}
