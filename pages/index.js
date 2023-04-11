@@ -10,15 +10,46 @@ const HomepageLayout = () => {
   const [currentEvent, setCurrentEvent] = useState();
 
   async function sendIt() {
-    // if (jsonToSend.length > 40) {
-    const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
-    const payload =
-      theResult['payload']['properties']['validationResult']['data']['payload'];
-    // console.log('YAY! ' + jsonToSend + ' \n ' + jsonToSend.length);
-    setGotThisJson(JSON.stringify(payload, null, 2));
-    // } else {
-    //   setGotThisJson('Need well formed json to send');
-    // }
+    // // if (jsonToSend.length > 40) {
+    // const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
+    // const payload =
+    //   theResult['payload']['properties']['validationResult']['data']['payload'];
+    // // console.log('YAY! ' + jsonToSend + ' \n ' + jsonToSend.length);
+    // setGotThisJson(JSON.stringify(payload, null, 2));
+    // // } else {
+    // //   setGotThisJson('Need well formed json to send');
+    // // }
+    alert('sendIt');
+    MwaAnalytics.trackEvent('product-interaction', {
+      event: {
+        attributes: {
+          action: 'view',
+          algorithm: 'personalized',
+        },
+      },
+      component: {
+        id: 'recommendation:recently-viewed',
+        type: 'ProductCarousel',
+        text: 'Buy now',
+        position: 2,
+        totalCount: 3,
+      },
+      product: {
+        skuID: 'ca_123',
+        productID: 'prod789',
+        unifiedID: '',
+        name: 'cool 22" pants',
+        localizedName: '',
+        price: '68.99',
+        salePrice: '',
+        isSale: false,
+        categoryUnifiedID: '',
+      },
+      collection: {
+        type: 'recommendation',
+        id: 'recently-viewed',
+      },
+    });
   }
 
   // useEffect(() => {
