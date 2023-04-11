@@ -1,6 +1,13 @@
 let signals = {};
-signals['app-response'] = 'APP_RESPONSE see notes';
-signals['error'] = 'ERROR see notes';
+// signals['app-response'] = 'APP_RESPONSE see notes';
+signals['error'] = {
+  error: {
+    errorType: ['ERROR TYPE <string>'],
+    errorDetails: ['ERROR DETAILS <string>'],
+    errorGuestFacing: ['ERROR GUEST FACING? <boolean>'],
+    errorMessage: ['ERROR MESSAGE <string>'],
+  },
+};
 signals['general-component-event'] = 'COMPONENT_EVENT see notes';
 
 signals['page-products-displayed'] = {
@@ -64,7 +71,30 @@ signals['product-interaction'] = {
   },
 };
 
-signals['purchase'] = 'PURCHASE see notes';
+signals['purchase'] = {
+  orderId: 'ca91299292',
+  screenCollections: ['purchase'],
+  collectionList: [
+    {
+      type: 'purchase',
+      id: 'purchase-id',
+      name: {
+        localized: 'pdp-test',
+      },
+      productList: [
+        {
+          productId: 'leggings',
+          unifiedId: 'align-legging',
+          skuList: [
+            {
+              sku: 'ca-123456',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
 signals['search'] = 'SEARCH see notes';
 
 export function filterNoise(x) {
@@ -98,4 +128,14 @@ export function green(thing) {
 }
 export function pink(thing) {
   console.log('%c ' + thing, 'background:pink');
+}
+
+// ----------------------
+export function isJSON(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }

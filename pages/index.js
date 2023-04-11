@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React, { useRef, useEffect, useState } from 'react';
 import { ExternalScripts, SomeLinks, EventButtons } from './someComponents.jsx';
-import { setTheEvent, green, filterNoise } from './bagOfFunctions.js';
+import { setTheEvent, green, isJSON } from './bagOfFunctions.js';
 
 const HomepageLayout = () => {
   const rerenderCountRef = useRef(0);
@@ -10,26 +10,15 @@ const HomepageLayout = () => {
   const [currentEvent, setCurrentEvent] = useState();
 
   async function sendIt() {
-    if (currentEvent !== undefined && jsonToSend !== undefined) {
-      try {
-        const theResult = await MwaAnalytics.trackEvent(
-          currentEvent,
-          jsonToSend
-        );
-        // const lessDumbResult = filterNoise(theResult);
-        // setGotThisJson(JSON.stringify(lessDumbResult, null, 2));
-        const payload =
-          theResult['payload']['properties']['validationResult']['data'][
-            'payload'
-          ];
-        setGotThisJson(JSON.stringify(payload, null, 2));
-      } catch (boom) {
-        setGotThisJson(JSON.stringify(boom, null, 2));
-      }
+    if (isJSON(jsonToSend) === true) {
+      const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
+      const payload =
+        theResult['payload']['properties']['validationResult']['data'][
+          'payload'
+        ];
+      setGotThisJson(JSON.stringify(payload, null, 2));
     } else {
-      alert(
-        'currentEvent=' + currentEvent + '\n----\njsonToSend=' + jsonToSend
-      );
+      setGotThisJson('json is not well formed');
     }
   }
 
