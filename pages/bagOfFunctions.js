@@ -1,5 +1,5 @@
 let signals = {};
-// signals['app-response'] = 'APP_RESPONSE see notes';
+signals['app-response'] = 'APP_RESPONSE see notes';
 signals['error'] = {
   error: {
     errorType: ['ERROR TYPE <string>'],

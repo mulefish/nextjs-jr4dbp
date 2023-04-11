@@ -10,15 +10,16 @@ const HomepageLayout = () => {
   const [currentEvent, setCurrentEvent] = useState();
 
   async function sendIt() {
-    if (isJSON(jsonToSend) === true) {
+    if (jsonToSend.length > 40) {
       const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
       const payload =
         theResult['payload']['properties']['validationResult']['data'][
           'payload'
         ];
+      console.log('YAY! ' + jsonToSend + ' \n ' + jsonToSend.length);
       setGotThisJson(JSON.stringify(payload, null, 2));
     } else {
-      setGotThisJson('json is not well formed');
+      setGotThisJson('Need well formed json to send');
     }
   }
 
