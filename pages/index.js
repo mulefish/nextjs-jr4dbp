@@ -10,29 +10,27 @@ const HomepageLayout = () => {
   const [currentEvent, setCurrentEvent] = useState();
 
   async function sendIt() {
-    if (jsonToSend.length > 40) {
-      const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
-      const payload =
-        theResult['payload']['properties']['validationResult']['data'][
-          'payload'
-        ];
-      console.log('YAY! ' + jsonToSend + ' \n ' + jsonToSend.length);
-      setGotThisJson(JSON.stringify(payload, null, 2));
-    } else {
-      setGotThisJson('Need well formed json to send');
-    }
+    // if (jsonToSend.length > 40) {
+    const theResult = await MwaAnalytics.trackEvent(currentEvent, jsonToSend);
+    const payload =
+      theResult['payload']['properties']['validationResult']['data']['payload'];
+    // console.log('YAY! ' + jsonToSend + ' \n ' + jsonToSend.length);
+    setGotThisJson(JSON.stringify(payload, null, 2));
+    // } else {
+    //   setGotThisJson('Need well formed json to send');
+    // }
   }
 
-  useEffect(() => {
-    rerenderCountRef.current += 1;
-    if (rerenderCountRef.current <= 1) {
-      green(
-        'MwaAnalytics.initializeAnalytics & rerenderCount ' +
-          rerenderCountRef.current
-      );
-      MwaAnalytics.initializeAnalytics('TEST', {}, [], true);
-    }
-  });
+  // useEffect(() => {
+  //   rerenderCountRef.current += 1;
+  //   if (rerenderCountRef.current <= 1) {
+  //     green(
+  //       'MwaAnalytics.initializeAnalytics & rerenderCount ' +
+  //         rerenderCountRef.current
+  //     );
+  //     MwaAnalytics.initializeAnalytics('TEST', {}, [], true);
+  //   }
+  // });
 
   function handleTextChange(event) {
     setJsonToSend(event.target.value);

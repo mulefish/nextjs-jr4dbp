@@ -80,6 +80,7 @@ signals['purchase'] = {
       id: 'purchase-id',
       name: {
         localized: 'pdp-test',
+        unified: 'optional',
       },
       productList: [
         {
