@@ -1,4 +1,8 @@
 let signals = {};
+signals['app-response'] = 'APP_RESPONSE see notes';
+signals['error'] = 'ERROR see notes';
+signals['general-component-event'] = 'COMPONENT_EVENT see notes';
+
 signals['product-interaction'] = {
   event: {
     attributes: {
@@ -30,12 +34,9 @@ signals['product-interaction'] = {
   },
 };
 
-signals['app-response'] = 'APP_RESPONSE see notes';
-signals['error'] = 'ERROR see notes';
 signals['purchase'] = 'PURCHASE see notes';
 signals['search'] = 'SEARCH see notes';
 signals['search'] = 'FILTER_INTERACTION see notes';
-signals['general-component-event'] = 'COMPONENT_EVENT see notes';
 
 signals['page-products-displayed'] = {
   screen: {
@@ -67,30 +68,7 @@ signals['page-products-displayed'] = {
   ],
 };
 
-// export function unrollJSON(json) {
-//   let result = {};
-//   for (const [key, value] of Object.entries(json)) {
-//     if (typeof value === 'object' && value !== null) {
-//       const nested = unrollJSON(value);
-//       for (const [nestedKey, nestedValue] of Object.entries(nested)) {
-//         result[key + '.' + nestedKey] = nestedValue;
-//       }
-//     } else {
-//       result[key] = value;
-//     }
-//   }
-//   return result;
-// }
-
 export function filterNoise(x) {
-  // The returned JSON from MwaAnalytics.trackEvent has gaint dumb array with entries like:
-  // ["payload"]["properties"]["334"] =  "u"
-  //
-  // This function will snip that noise out and return a cleaner object
-  //
-  // Frankly, this weird data shape looks like a bug to me. Adobe's bug? Ours? Dunno.
-  //
-
   const filteredProps = Object.fromEntries(
     Object.entries(x.payload.properties).filter(([key, value]) => isNaN(key))
   );
@@ -104,20 +82,15 @@ export function filterNoise(x) {
   };
   return filteredX;
 }
-/* 
-export function flattenObject(obj, prefix = '') {
-  let flatObj = {};
-  for (const [key, value] of Object.entries(obj)) {
-    const newKey = prefix + key;
-    if (typeof value === 'object' && value !== null) {
-      Object.assign(flatObj, flattenObject(value, newKey + '.'));
-    } else {
-      flatObj[newKey] = value;
-    }
-  }
-  return flatObj;
-}
-*/
+
+// ----------------------
+export const setTheEvent = (whichEvent, setJsonToSend, setCurrentEvent) => {
+  console.log('%c Which Event? ' + whichEvent, 'background:lightblue;');
+  const x = signals[whichEvent];
+  setJsonToSend(JSON.stringify(x, null, 2));
+  setCurrentEvent(whichEvent);
+};
+// ----------------------
 export function tan(thing) {
   console.log('%c ' + thing, 'background:tan');
 }
@@ -127,10 +100,3 @@ export function green(thing) {
 export function pink(thing) {
   console.log('%c ' + thing, 'background:pink');
 }
-
-export const setTheEvent = (whichEvent, setJsonToSend, setCurrentEvent) => {
-  console.log('%c Which Event? ' + whichEvent, 'background:lightblue;');
-  const x = signals[whichEvent];
-  setJsonToSend(JSON.stringify(x, null, 2));
-  setCurrentEvent(whichEvent);
-};

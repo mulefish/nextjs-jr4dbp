@@ -61,6 +61,14 @@ export const SomeLinks = () => {
       >
         DCP QA Processes - Analytics Module
       </a>
+
+      <a
+        class="nudge"
+        target="_blank"
+        href="https://lululemon.atlassian.net/wiki/spaces/DCP/pages/2761724896/Getting+Started+Analytics+Module+Implementation"
+      >
+        Getting+Started+Analytics
+      </a>
     </div>
   );
 };
