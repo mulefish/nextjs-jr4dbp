@@ -78,26 +78,17 @@ export const EventButtons = ({
   setJsonToSend,
   setCurrentEvent,
 }) => {
+  // signals['app-response'] = 'APP_RESPONSE see notes';
+  // signals['error'] = 'ERROR see notes';
+  // signals['general-component-event'] = 'COMPONENT_EVENT see notes';
+  // signals['page-products-displayed'] = {
+  // signals['product-interaction'] = {
+  // signals['purchase'] = 'PURCHASE see notes';
+  // signals['search'] = 'SEARCH see notes';
+  // signals['search'] = 'FILTER_INTERACTION see notes';
+
   return (
     <div>
-      {/* // product-interaction  */}
-      <button
-        class="nudge"
-        onClick={() =>
-          setTheEvent('product-interaction', setJsonToSend, setCurrentEvent)
-        }
-      >
-        product-interaction
-      </button>
-      <button
-        class="nudge"
-        onClick={() =>
-          setTheEvent('page-products-displayed', setJsonToSend, setCurrentEvent)
-        }
-      >
-        page-products-displayed
-      </button>
-
       {/* // app-response  */}
       <button
         class="nudge"
@@ -116,6 +107,36 @@ export const EventButtons = ({
         error
       </button>
 
+      {/* // general-component-event  */}
+      <button
+        class="nudge"
+        onClick={() =>
+          setTheEvent('general-component-event', setJsonToSend, setCurrentEvent)
+        }
+      >
+        general-component-event
+      </button>
+
+      {/* // page-products-displayed  */}
+      <button
+        class="nudge"
+        onClick={() =>
+          setTheEvent('page-products-displayed', setJsonToSend, setCurrentEvent)
+        }
+      >
+        page-products-displayed
+      </button>
+
+      {/* product-interaction */}
+      <button
+        class="nudge"
+        onClick={() =>
+          setTheEvent('product-interaction', setJsonToSend, setCurrentEvent)
+        }
+      >
+        product-interaction
+      </button>
+
       {/* // purchase  */}
       <button
         class="nudge"
@@ -130,16 +151,6 @@ export const EventButtons = ({
         onClick={() => setTheEvent('search', setJsonToSend, setCurrentEvent)}
       >
         search
-      </button>
-
-      {/* // general-component-event  */}
-      <button
-        class="nudge"
-        onClick={() =>
-          setTheEvent('general-component-event', setJsonToSend, setCurrentEvent)
-        }
-      >
-        general-component-event
       </button>
     </div>
   );

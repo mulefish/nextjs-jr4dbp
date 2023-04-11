@@ -16,3 +16,15 @@ trackEvent(EVENT_CATEGORY.COMPONENT_EVENT, {
 
 
 
+
+
+
+let signals = {};
+signals['app-response'] = 'APP_RESPONSE see notes';
+signals['error'] = 'ERROR see notes';
+signals['general-component-event'] = 'COMPONENT_EVENT see notes';
+signals['product-interaction'] = {
+signals['purchase'] = 'PURCHASE see notes';
+signals['search'] = 'SEARCH see notes';
+signals['search'] = 'FILTER_INTERACTION see notes';
+signals['page-products-displayed'] = {
